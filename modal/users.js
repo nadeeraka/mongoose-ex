@@ -1,15 +1,13 @@
+
 const mongoose = require("mongoose");
 
-let newTodo = new Todo({
-  text: "node",
-  completed: true,
-  completedAt: 8.0
-});
+let User = mongoose.model('User',{
+  email:{
+    type:String,
+    required:true,
+    trim:true,
+    minlenght:1
+  }
+})
 
-newTodo
-  .save()
-  .then(
-    res => console.log(`result : ${res}`),
-    e => console.log(`error occard : ${e}`)
-  );
-module.exports = {Users}
+module.exports = {User}

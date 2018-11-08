@@ -3,14 +3,19 @@ const mongoose = require('mongoose');
 
 let Todo = mongoose.model('Todo', {
     text: {
-        type: String
+        type: String,
+        required:true,
+        trim: true,
+        minlenght:1
     },
     completed: {
-        type: Boolean
+        type: Boolean,
+        default:false
     },
     completedAt: {
-        type: Number
+        type: Number,
+        default:null
     }
 })
 
-module.exports = {Todos};
+module.exports = {Todo};
