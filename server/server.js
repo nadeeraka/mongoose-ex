@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser =require('body-parser');
+const _ = require('lodash');
 
 
 const {mongoose} = require("../db/db");
@@ -20,7 +21,20 @@ app.post('/todos',(req,res)=>
       res.status(400).send(e);
   });
 
+
 })
+app.post('/users', (req, res) =>
+{
+    let body = _.pick(req.body,['email','password']);
+    let newUser = new User(body);
+    newUser.save()
+    .then((result) => {
+        res.send(result);
+    }).catch((err) => {
+        res.status(400).send(err);
+    });
+    
+});
 
 app.get('/todos',(req,res)=>
 {
